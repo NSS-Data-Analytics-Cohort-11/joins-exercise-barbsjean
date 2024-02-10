@@ -54,14 +54,34 @@ ORDER BY worldwide_gross DESC;
 --4. Write a query that returns, for each distributor in the distributors table, the distributor name and the number of movies associated with that distributor in the movies table. Your result set should include all of the distributors, whether or not they have any movies in the movies table.
 
 SELECT 
-	distributors.distributor_id,
-	distributors.company_name,
+	distributors.company_name as distributor,
 	COUNT(specs.movie_id)
 FROM distributors
 	FULL JOIN specs
 	ON distributors.distributor_id = specs.domestic_distributor_id
+GROUP BY distributors.company_name;
+
+******************************************************
+
+-- 5. Write a query that returns the five distributors with the highest average movie budget.
+
+SELECT
+	company_name as distributors,
+	AVG(film_budget) as movie_budget
+FROM distributors
+	INNER JOIN specs
+	ON distributors.distributor_id = specs.domestic_distributor_id
+	INNER JOIN revenue
+	on specs.movie_id = revenue.movie_id
+GROUP BY distributors
+ORDER BY movie_budget DESC
+LIMIT 5;
+
+-- ANSWER: Walt Disney, Sony Pictures, Lionsgate, DreamWorks, Warner Bros. 
 	
-	
+******************************************************
+
+-- 6. How many movies in the dataset are distributed by a company which is not headquartered in California? Which of these movies has the highest imdb rating?
 	
 	
 

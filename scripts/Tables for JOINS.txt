@@ -1,0 +1,11 @@
+distributors
+    distributor_id, company_name, headquarters, year_founded
+
+rating
+    movie_id, imdb_rating
+
+revenue
+    movie_id, film_budget, worldwide_gross
+
+specs
+    movie_id, film_title, release_year, length_in_min, mpaa_rating, domestic_distributor_id
